@@ -1,66 +1,173 @@
-.inicia-jogo {
-    display:flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 24px;
+html {
+    background-color: #F5F5F5;
+}
 
-    position: absolute;
+/*header {
+    height: 200px;
+}*/
+
+/* CSS da página HOME - Começo*/
+
+.logoAlura {
+    margin: 20px 0 0 84px;
+    top: 40px;
+    left: 84px;
+}
+
+.inicio-botoes {
+    width: 940px;
+    margin: 0 auto;
+    position: relative;
+    width: 35%;
+    margin: 0 auto;
+    padding: 3em 0 0 0;
+}
+
+.inicia-jogo {
+    display: block;
+    padding: 24px;
+    margin: 30px 5px;
     width: 317px;
     height: 105px;
-    left: 562px;
-    top: 270px;
-    
+    color: white;
     background-color: #0A3871;
     border-radius: 24px;
+    transition: 1s all;
+}
 
-    font-family: Inter;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    
-    color: white;
-
-    flex: none;
-    order: 0;
-    flex-grow: 1;
-    margin: 0px 8px;
+.inicia-jogo:hover {
+    transform: scale(1.2);
+    color: green;
 }
 
 .adiciona-palavra {
-    display:flex;
-    flex-direction: row;
-    align-items: flex-start;
+    top: 30px;
+    display: block;
     padding: 24px;
-
-    position: absolute;
+    margin: 30px 5px;
     width: 317px;
     height: 105px;
-    left: 562px;
-    top: 394px;
-
-    border: 1px solid #0A3871;
-    box-sizing: border-box;
-    border-radius: 24px;
-   
-
-    font-family: Inter;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    
-    
+    background-color: #F5F5F5;
     color: #0A3871;
+    border-radius: 24px;
+    border-color: #0A3871;
+    transition: 1s all;
+}
 
-    flex: none;
-    order: 0;
-    flex-grow: 1;
-    margin: 0px 8px;
+.adiciona-palavra:hover {
+    transform: scale(1.2);
+    color: green;
+}
+
+
+
+
+
+/* CSS da página addPalavraForca*/
+
+
+
+
+
+
+.registra-palavra {
+    width: 70%;
+    margin-left: auto;
+}
+
+.recebe-palavra {
+    padding-bottom: 6em;
+}
+
+.recebe-palavra label {
+    width: 60%;
+    display: block;
+    left: 376px;
+    top: 150px;
+    font-size: 32px;
+    color: #0A3871 ;
+}
+
+#palavra-usuario {
+    margin-top: 10px;
+    padding: 1em;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    border-color: #00CED1;
+}
+
+
+.salva-palavra {
+    width: 332px;
+    height: 67px;
+    margin-right: 3em;
+    background-color: #0A3871;
+    border-radius: 24px;
+    color: #FFFFFF;
+    transition: 1s all;
+}
+
+.salva-palavra:hover {
+    color: green;
+    transform: scale(1.1);
+}
+
+.cancela-palavra {
+    width: 332px;
+    height: 67px;
+    border-radius: 24px;
+    border-color: #0A3871;
+    background-color: #F5F5F5;
+    transition: 1s all;
+}
+
+.cancela-palavra:hover {
+    color: green;
+    transform: scale(1.1);
+}
+
+
+
+
+/*css da página jogoForca*/
+
+
+
+
+.area-jogo {
+    height: 430px;
+}
+
+
+.botoes-jogo {
+    margin-left: 20%;
+}
+
+.novo-jogo {
+    width: 332px;
+    height: 67px;
+    margin-right: 3em;
+    background-color: #0A3871;
+    border-radius: 24px;
+    color: #FFFFFF;
+    transition: 1s all;
+}
+
+.novo-jogo:hover {
+    color: green;
+    transform: scale(1.1);
+}
+
+.desistir {
+    width: 332px;
+    height: 67px;
+    border-radius: 24px;
+    border-color: #0A3871;
+    background-color: #E5E5E5;
+    transition: 1s all;
+}
+
+.desistir:hover {
+    color: green;
+    transform: scale(1.1);
 }

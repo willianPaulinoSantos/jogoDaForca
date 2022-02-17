@@ -1,12 +1,16 @@
 html {
     background-color: #F5F5F5;
+    font-family: 'Open Sans', sans-serif;
 }
 
-/*header {
-    height: 200px;
-}*/
+
 
 /* CSS da página HOME - Começo*/
+
+.menu-home {
+    width: 90%;
+    margin: 0 auto;
+}
 
 .logoAlura {
     margin: 20px 0 0 84px;
@@ -14,10 +18,24 @@ html {
     left: 84px;
 }
 
+h1, h2 {
+    display: inline;
+}
+
+.titulo-home {
+    margin-left: 60%;
+    font-size: 30px;
+    color: #0A3871;
+}
+
+.home-botoes {
+    margin-top: 10em;
+}
+
+
 .inicio-botoes {
     width: 940px;
     margin: 0 auto;
-    position: relative;
     width: 35%;
     margin: 0 auto;
     padding: 3em 0 0 0;
@@ -26,7 +44,7 @@ html {
 .inicia-jogo {
     display: block;
     padding: 24px;
-    margin: 30px 5px;
+    margin: none;
     width: 317px;
     height: 105px;
     color: white;
@@ -34,6 +52,7 @@ html {
     border-radius: 24px;
     transition: 1s all;
 }
+
 
 .inicia-jogo:hover {
     transform: scale(1.2);
@@ -44,7 +63,7 @@ html {
     top: 30px;
     display: block;
     padding: 24px;
-    margin: 30px 5px;
+    margin-top: 30px;
     width: 317px;
     height: 105px;
     background-color: #F5F5F5;
@@ -60,6 +79,44 @@ html {
 }
 
 
+/* MOBILE HOME-FORCA */
+
+
+
+@media screen and (max-width: 480px) {
+
+    .menu-home {
+       width: auto;
+    }
+
+    h1 {
+        width: auto;
+        display: inline;
+    }
+
+    .logoAlura {
+        margin-left: 0;
+    }
+
+    .titulo-home {
+        margin: 0;
+        padding-left: 3em;
+    }
+
+    .home-botoes {
+        padding: 0 2em 0 2em;
+    }
+
+    .inicio-botoes{
+        width: auto;
+        padding-top: 6em;
+    }
+    .inicia-jogo, .adiciona-palavra {
+        width: 100%;
+        font-size: 20px;
+    }
+}
+
 
 
 
@@ -68,20 +125,16 @@ html {
 
 
 
-
-
-.registra-palavra {
-    width: 70%;
-    margin-left: auto;
-}
-
 .recebe-palavra {
-    padding-bottom: 6em;
+    width: 70%;
+    margin: auto;
+    padding: 0 0 6em 15em;
 }
 
 .recebe-palavra label {
-    width: 60%;
+   /* width: 60%;*/
     display: block;
+    padding-right: 6em;
     left: 376px;
     top: 150px;
     font-size: 32px;
@@ -96,11 +149,18 @@ html {
     border-color: #00CED1;
 }
 
+.botoes-palavra {
+    padding: 7em 0 0 19em;
+    width: 100%;
+    margin: auto;
+}
+
+
 
 .salva-palavra {
     width: 332px;
     height: 67px;
-    margin-right: 3em;
+    margin: 0 3em 2em 0;
     background-color: #0A3871;
     border-radius: 24px;
     color: #FFFFFF;
@@ -126,6 +186,47 @@ html {
     transform: scale(1.1);
 }
 
+
+@media screen and (max-width: 480px){
+
+    h1 {    
+        margin: 0 0 0 2em;
+    }
+
+    .registra-palavra {
+        width: auto;
+        padding: 8em 1em 1em 1em;  
+    }
+
+    .recebe-palavra {
+        width: auto;
+        padding: 0;
+    }
+
+    .recebe-palavra label {
+        padding: 0;
+    }
+
+    #palavra-usuario {
+        width: 92%;
+    }
+
+    .botoes-palavra {
+        padding: 6em 0 0 0;
+        width: auto;
+    }
+
+    .salva-palavra {
+        margin: 1em 0 2em 0;
+        width: 100%;
+        font-size: 20px;
+    }
+
+    .cancela-palavra {
+        width: 100%;
+        font-size: 20px;
+    }
+}
 
 
 
@@ -170,4 +271,20 @@ html {
 .desistir:hover {
     color: green;
     transform: scale(1.1);
+}
+
+
+/*CSS MOBILE PARA JOGO FORCA */
+
+@media screen and (max-width: 480px){
+
+    .botoes-jogo {
+        margin: 1em 3em 2em 3em;
+    }
+
+
+    .novo-jogo, .desistir {
+        width: 100%;
+        margin-bottom: 1em;
+    }
 }

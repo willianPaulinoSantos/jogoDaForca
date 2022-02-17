@@ -25,10 +25,16 @@ function validaPalavra(palavra){
 	procuraLetrasMinusculas(palavra);
 	procuraPorNumeros(palavra);
 	procuraCaracteresEspeciais(palavra);
+
+	if(erros.length > 0){
+		mostraErros(erros);
+	}else{
+		var ul = document.querySelector(".erros");
+		ul.innerHTML = "";
+	}
 	
 	return palavra;
 }
-
 
 
 
@@ -40,7 +46,7 @@ function limpaEntradaUsuario(campoUsuario){
 
 function checaTamanhoDaPalavra (palavra) {
 	if (palavra.length > 8){
-		erros.push("excedeu o número de letras");
+		erros.push("Excedeu o número de letras");
 		console.log(palavra.toUpperCase());
 		return;
 	}
@@ -83,4 +89,15 @@ function procuraCaracteresEspeciais(palavra){
 	}
 }
 
+mostraErros(erros);
+
+function mostraErros(erros){
+	var ul = document.querySelector(".erros");
+	ul.innerHTML = "";
+	erros.forEach(function(erro){
+		var li = document.createElement("li");
+		li.textContent = erro;
+		ul.appendChild(li);
+	});
+}
 

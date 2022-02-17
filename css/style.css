@@ -158,6 +158,10 @@ h1, h2 {
     border-color: #00CED1;
 }
 
+.erros {
+    color: red;
+}
+
 .botoes-palavra {
     padding: 7em 0 0 19em;
     width: 100%;

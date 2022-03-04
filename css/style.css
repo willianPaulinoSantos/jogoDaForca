@@ -5,7 +5,7 @@ html {
 
 
 
-/* CSS da página HOME - Começo*/
+/* CSS da página HOME - Começo ======================================================================*/
 
 .menu-home {
     width: 90%;
@@ -60,7 +60,7 @@ h1, h2 {
 
 
 .inicia-jogo:hover {
-    transform: scale(1.2);
+    transform: scale(0.1);
     color: green;
 }
 
@@ -88,7 +88,7 @@ h1, h2 {
 }
 
 
-/* MOBILE HOME-FORCA */
+/* MOBILE HOME-FORCA ===============================================================================*/
 
 
 
@@ -129,7 +129,7 @@ h1, h2 {
 
 
 
-/* CSS da página addPalavraForca*/
+/* CSS da página addPalavraForca ====================================================================*/
 
 
 
@@ -204,6 +204,8 @@ h1, h2 {
 }
 
 
+/* MOBILE PAGINA addPalavraForca ====================================================================*/
+
 @media screen and (max-width: 480px){
 
     h1 {    
@@ -247,18 +249,24 @@ h1, h2 {
 
 
 
-/*css da página jogoForca*/
+/*css da página jogoForca ============================================================================*/
 
 
 
 
 .area-jogo {
-    height: 430px;
+    height: 400px;/*430px;*/
 }
 
+.tela-jogo {
+    /*width: 95%;
+    height: 95%;*/
+    margin: 2em;
+    border: 2px solid black;
+}
 
 .botoes-jogo {
-    margin-left: 20%;
+    margin: 5% 0 0 20%;
 }
 
 .novo-jogo {

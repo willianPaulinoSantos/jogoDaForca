@@ -32,7 +32,6 @@ function validaPalavra(palavra){
 		var ul = document.querySelector(".erros");
 		ul.innerHTML = "";
 	}
-	
 	return palavra;
 }
 
@@ -67,10 +66,8 @@ function procuraLetrasMinusculas(palavra){
 function procuraPorNumeros(palavra) {
 	var procuraNum = /\d/g;
 	var checaNum = palavra.match(procuraNum);
-	if (!checaNum){
+	if (checaNum){
 		console.log("palavra sem números");
-	}
-	else{
 		erros.push("Por favor, não utilize números!");
 		return;
 	}
@@ -78,18 +75,24 @@ function procuraPorNumeros(palavra) {
 
 
 function procuraCaracteresEspeciais(palavra){
+	var procuraAscento = /Á|À|Â|Ã|É|È|Í|Ï|Ó|Ô|Õ|Ö|Ú|Ç|Ñ/g;
+	var checaAscento = palavra.match(procuraAscento)
 	var procuraCaract = /\W/g;
 	var checaCaract = palavra.match(procuraCaract);
-	if(!checaCaract){
-		console.log("palavra sem caracteres especiais");
-	}
-	else{
-		erros.push("Por favor, não insira caracteres especiais");
-		return;
+	console.log("checaCaract = " + checaCaract + " " + typeof(checaCaract));
+	console.log("checaAscento = " + checaAscento + " " + typeof(checaAscento));
+
+
+	if(checaAscento) {
+		if (checaCaract){
+			if (checaAscento.length != checaCaract.length){
+				erros.push("Por favor, não insira caracteres especiais.");
+				return;
+			}
+		}	
 	}
 }
 
-mostraErros(erros);
 
 function mostraErros(erros){
 	var ul = document.querySelector(".erros");

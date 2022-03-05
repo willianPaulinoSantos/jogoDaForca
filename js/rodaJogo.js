@@ -25,9 +25,8 @@ botaoIniciar.addEventListener("click",function (){
 	desenhaTracosLetras(palavraForca);
 	desenhaForca();
 	checaLetra(palavraForca);
-	
-//	desenhaLetra(palavraForca);
-	console.log(palavraForca);
+	desenhaLetra(palavraForca);
+	//console.log(palavraForca);
 });
 
 function iniciaJogo(palavras){
@@ -73,8 +72,9 @@ function desenhaLetra(letraDigitada) {
 	
 }
 
-function checaLetra(palavraForca) {
-	document.querySelector('body').addEventListener('keydown', function (event, palavraForca){
+
+function checaLetra (palavraForca){
+	document.querySelector('body').addEventListener('keydown', function (event){
 		if (event.keyCode >= 65 && event.keyCode <= 90) {
 			letraDigitada = event.key;
 			console.log(letraDigitada);
@@ -85,5 +85,5 @@ function checaLetra(palavraForca) {
 				}
 			}
 		}
-	});
+	})
 }

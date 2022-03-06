@@ -14,7 +14,7 @@ pincel.strokeStyle = 'black';
 const espaco = 35;
 let contaErros = 0;
 let letraDigitada; 
-
+let xLetra = 415;
 
 	
 
@@ -24,7 +24,7 @@ botaoIniciar.addEventListener("click",function (){
 	let palavraForca = iniciaJogo(palavras);
 	desenhaTracosLetras(palavraForca);
 	desenhaForca();
-	checaLetra(palavraForca);
+	checaLetra(palavraForca, xLetra	);
 	desenhaLetra(palavraForca);
 	//console.log(palavraForca);
 });
@@ -63,17 +63,15 @@ function desenhaForca() {
 		pincel.stroke();
 }
 
-function desenhaLetra(letraDigitada) {
+function desenhaLetra(letraDigitada, xLetra) {
 	pincel.font = "40px Arial";
 	pincel.textBaseline = 'alphabetic';
-	let xLetra = 415;
 	pincel.fillText(letraDigitada, xLetra, 370);
-	xLetra += 100;
-	
+	console.log(xLetra);
 }
 
 
-function checaLetra (palavraForca){
+function checaLetra (palavraForca, xLetra){
 	document.querySelector('body').addEventListener('keydown', function (event){
 		if (event.keyCode >= 65 && event.keyCode <= 90) {
 			letraDigitada = event.key;
@@ -81,7 +79,9 @@ function checaLetra (palavraForca){
 			console.log(`printei via checa letra: ${palavraForca}`);
 			for (let i = 0; i < palavraForca.length; i++){
 				if (letraDigitada == palavraForca[i]){
-					desenhaLetra(letraDigitada);
+					desenhaLetra(letraDigitada, xLetra);
+					xLetra += 100;
+					return;
 				}
 			}
 		}

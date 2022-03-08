@@ -2,7 +2,7 @@
 //Script da página homeForca.html
 
 const palavras = ["PEDRA", "JAZZ", "TONTO", "TELA", "CORAÇÃO", "EXCEÇÃO", "FOGÃO",
-"AMOR", "CORPO", "ADVOGADO", "CAMISETA", "COMPUTADOR", "SERVIDOR", "FUTEBOL", "JORNAL",
+"AMOR", "CORPO", "ADVOGADO", "CAMISETA", "COMPRA", "SERVIDOR", "FUTEBOL", "JORNAL",
 "CORRIDA", "PARALELO", "VENCEDOR", "PERDEDOR", "CORAGEM", "EMPRESA", "JAVA", "CADEIRA", 
 "BRAÇO", "ABRAÇO", "CARTÃO", "AMARELO", "BLUSA", "PARCELA", "CREDITO", "ERVA", "CALULAR", 
 "PAPEL"];
@@ -14,7 +14,9 @@ pincel.strokeStyle = 'black';
 const espaco = 35;
 let contaErros = 0;
 let letraDigitada; 
-let xLetra = 415;
+let xLetrasI = [];
+let xLetrasF = [];
+let yLetra = 370; 
 
 	
 
@@ -24,7 +26,6 @@ botaoIniciar.addEventListener("click",function (){
 	let palavraForca = iniciaJogo(palavras);
 	desenhaTracosLetras(palavraForca);
 	desenhaForca();
-	checaLetra(palavraForca, xLetra	);
 	desenhaLetra(palavraForca);
 	//console.log(palavraForca);
 });
@@ -41,11 +42,20 @@ function sorteiaPalavra() {
 function desenhaTracosLetras(palavraForca) {
 	for (let i = 0; i < palavraForca.length; i++) {
 		pincel.beginPath();
-		pincel.moveTo(400 + i*100, 380);
-		pincel.lineTo(500 + i*100-espaco, 380);
+		xLetrasI[i] = 400 + i*100;
+		xLetrasF[i] = 500 + i*100-espaco;
+		pincel.moveTo(xLetrasI[i], 380);
+		pincel.lineTo(xLetrasF[i], 380);
 		pincel.stroke();
 		console.log(palavraForca);
+		console.log(`
+		X inicial da ${i}a letra: ${xLetrasI[i]}
+		X final da ${i}a letra: ${xLetrasF[i]}
+		`);
 	}
+	console.log(xLetrasI);
+	console.log(xLetrasF);
+	checaLetra(palavraForca, xLetrasI, xLetrasF, yLetra);
 }
 
 function desenhaForca() {
@@ -63,26 +73,39 @@ function desenhaForca() {
 		pincel.stroke();
 }
 
-function desenhaLetra(letraDigitada, xLetra) {
+function desenhaLetra(letraDigitada, xLetra, yLetra) {
 	pincel.font = "40px Arial";
 	pincel.textBaseline = 'alphabetic';
-	pincel.fillText(letraDigitada, xLetra, 370);
+	pincel.fillText(letraDigitada, xLetra, yLetra);
 	console.log(xLetra);
 }
 
 
-function checaLetra (palavraForca, xLetra){
+function checaLetra (palavraForca, xLetrasI, xLetrasF, yLetra){
+	let xDesenhaLetra = 0;
+	let contaLetra = 0;
 	document.querySelector('body').addEventListener('keydown', function (event){
 		if (event.keyCode >= 65 && event.keyCode <= 90) {
 			letraDigitada = event.key;
 			console.log(letraDigitada);
-			console.log(`printei via checa letra: ${palavraForca}`);
 			for (let i = 0; i < palavraForca.length; i++){
-				if (letraDigitada == palavraForca[i]){
-					desenhaLetra(letraDigitada, xLetra);
-					xLetra += 100;
+				if (letraDigitada == palavraForca[i] /*&& contaLetra === 0*/){
+					xDesenhaLetra = (xLetrasI[i] + xLetrasF[i])/2
+					desenhaLetra(letraDigitada, xDesenhaLetra, yLetra);
+					console.log(`xLetrasI antes: ${xLetrasI}`);
+					xLetrasI.splice(0, i);
+					console.log(`xLetrasI depois: ${xLetrasI}`);
+
+					//contaLetra++;
+					console.log(`xDesenhaLetra = ${xDesenhaLetra}`);
 					return;
+				}/* if (letraDigitada == palavraForca[i] && contaLetra > 0){
+					xDesenhaLetra = (xLetrasI[i] + xLetrasF[i])/2
+					desenhaLetra(letraDigitada, xDesenhaLetra, yLetra);
+				}*/ else {
+					continue;
 				}
+
 			}
 		}
 	})

@@ -11,10 +11,12 @@ let pincel = tela.getContext('2d');
 pincel.lineWidth = 5; 
 pincel.strokeStyle = 'black'; 
 
+
 const espaco = 35;
 let contaErros = 0;
 let letraDigitada; 
 let codigoLetraDigitada;
+let palavraForca;
 
 let xLetrasI = [];
 let xLetrasF = [];
@@ -24,8 +26,12 @@ let yLetra = 370;
 
 let botaoIniciar = document.querySelector(".novo-jogo");
 botaoIniciar.addEventListener("click",function (){
+	console.log(`palavra Forca quando clica no botão novo jogo = ${palavraForca}`);
+	console.log(typeof(palavraForca));
 	pincel.clearRect(0, 0, 1200, 400);
-	let palavraForca = iniciaJogo(palavras);
+	palavraForca = "";
+	palavraForca = iniciaJogo(palavras);
+	console.log(`palavra Forca quando sorteiou nova palavra = ${palavraForca}`);
 	desenhaTracosLetras(palavraForca);
 	desenhaForca();
 	desenhaLetra(palavraForca);
@@ -83,23 +89,32 @@ function desenhaLetra(letraDigitada, xLetra, yLetra) {
 
 
 function checaLetra (palavraForca, xLetrasI, xLetrasF, yLetra){
-	let xDesenhaLetra = 0;
 	letraDigitada = recebeLetraDigitada();
 	codigoLetraDigitada = recebeCodigoLetraDigitada();
-	document.querySelector('body').addEventListener('keydown', function (event){
+	document.querySelector('body').addEventListener('keydown', function (){
+		let xDesenhaLetra = 0;
 		if (codigoLetraDigitada >= 65 && codigoLetraDigitada <= 90) {
 			for (let i = 0; i < palavraForca.length; i++){
 				if (letraDigitada == palavraForca[i])
 				{
 					xDesenhaLetra = (xLetrasI[i] + xLetrasF[i])/2
 					desenhaLetra(letraDigitada, xDesenhaLetra, yLetra);
+					console.log(`Palavra Forca = ${palavraForca}`);
+					console.log(`letra digitada = ${letraDigitada}`);
+					console.log(`palavraForca[${i}] = ${palavraForca[i]}`);
+					console.log(`x da letra digitada = ${xDesenhaLetra}`);
+					console.log("apareceu");
 				}
 				else
-				{
+				{	
 					continue;
 				}
 			}
 		}
+		
+		botaoIniciar.addEventListener('click', function(){
+			palavraForca = "";
+		})
 	})
 }
 
@@ -116,4 +131,3 @@ function recebeCodigoLetraDigitada (){
 		return codigoLetraDigitada;
 	});
 }
-

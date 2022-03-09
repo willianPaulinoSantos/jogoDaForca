@@ -60,7 +60,7 @@ h1, h2 {
 
 
 .inicia-jogo:hover {
-    transform: scale(0.1);
+    transform: scale(1.2);
     color: green;
 }
 

@@ -13,7 +13,8 @@ pincel.strokeStyle = 'black';
 
 
 const espaco = 35;
-let contaErros = 0;
+let contaErros;
+let contaAcertos
 let letraDigitada; 
 let codigoLetraDigitada;
 let palavraForca;
@@ -91,27 +92,27 @@ function desenhaLetra(letraDigitada, xLetra, yLetra) {
 function checaLetra (palavraForca, xLetrasI, xLetrasF, yLetra){
 	letraDigitada = recebeLetraDigitada();
 	codigoLetraDigitada = recebeCodigoLetraDigitada();
+	contaAcertos = 0;
+
 	document.querySelector('body').addEventListener('keydown', function (){
 		let xDesenhaLetra = 0;
+
 		if (codigoLetraDigitada >= 65 && codigoLetraDigitada <= 90) {
 			for (let i = 0; i < palavraForca.length; i++){
 				if (letraDigitada == palavraForca[i])
 				{
-					xDesenhaLetra = (xLetrasI[i] + xLetrasF[i])/2
+					xDesenhaLetra = ((xLetrasI[i] + xLetrasF[i])/2)-12;
 					desenhaLetra(letraDigitada, xDesenhaLetra, yLetra);
-					console.log(`Palavra Forca = ${palavraForca}`);
-					console.log(`letra digitada = ${letraDigitada}`);
-					console.log(`palavraForca[${i}] = ${palavraForca[i]}`);
-					console.log(`x da letra digitada = ${xDesenhaLetra}`);
-					console.log("apareceu");
+					contaAcertos++;
+					checaVitoria(contaAcertos, palavraForca);
 				}
 				else
 				{	
 					continue;
+					//contaErros++;
 				}
 			}
 		}
-		
 		botaoIniciar.addEventListener('click', function(){
 			palavraForca = "";
 		})
@@ -130,4 +131,10 @@ function recebeCodigoLetraDigitada (){
 		codigoLetraDigitada = event.keyCode;
 		return codigoLetraDigitada;
 	});
+}
+
+function checaVitoria (contaAcertos, palavraForca) {
+	if (contaAcertos == palavraForca.length){
+		console.log("Você venceu!!");
+	}
 }

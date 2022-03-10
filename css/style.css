@@ -258,9 +258,11 @@ h1, h2 {
     height: 400px;/*430px;*/
 }
 
+
+
 .tela-jogo {
-    /*width: 95%;
-    height: 95%;*/
+    width: 95%;
+    height: 95%;
     margin: 2em;
     border: 2px solid black;
 }
@@ -300,6 +302,34 @@ h1, h2 {
 .desistir:hover {
     color: green;
     transform: scale(1.1);
+}
+
+.voce-venceu, .voce-perdeu {
+    opacity: 0.2; 
+}
+
+.mensagem-vitoria {
+    position: absolute;
+    left: 40rem;
+    top: 3em; 
+    display: inline;
+    font-size: 3rem;
+    color: green;
+    font-weight: bold;
+}
+
+.mensagem-derrota {
+    position: absolute;
+    left: 40rem;
+    top: 3em; 
+    display: inline;
+    font-size: 3rem;
+    color:red;
+    font-weight: bold;
+}
+
+.invisible {
+    display: none;
 }
 
 

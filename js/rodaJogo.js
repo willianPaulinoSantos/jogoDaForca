@@ -1,9 +1,8 @@
 
-const palavras = ["PEDRA", "JAZZ", "TONTO", "TELA", "CORAÇÃO", "EXCEÇÃO", "FOGÃO",
-"AMOR", "CORPO", "ADVOGADO", "CAMISETA", "COMPRA", "SERVIDOR", "FUTEBOL", "JORNAL",
-"CORRIDA", "PARALELO", "VENCEDOR", "PERDEDOR", "CORAGEM", "EMPRESA", "JAVA", "CADEIRA", 
-"BRAÇO", "ABRAÇO", "CARTÃO", "AMARELO", "BLUSA", "PARCELA", "CREDITO", "ERVA", "CALULAR", 
-"PAPEL"];
+const palavras = ["MONDAY", "TUESDAY", "THURSDAY", "FRIDAY", "HEART", "BOTTLE", "FIRE",
+"LOVE", "BODY", "LAWYER", "SHIRT", "PAST", "SERVER", "AIRPLANE", "NEWS",
+"SCRIPT", "WINE", "ROCK", "MUSIC", "PRESENT", "PARENT", "JAVA", "FUTURE", "HUG", "CARD", "YELLOW", "FRIEND", "PENCIL", "CREDIT", "TEACHER", "CLASS", 
+"PAPER", "OBJECT"];
 
 
 let tela = document.querySelector('.tela-jogo');
@@ -20,7 +19,8 @@ let mensagemFinalJogo = document.querySelector('.mensagem-vitoria');
 const espaco = 35;
 let contaErros;
 let contaAcertos;
-let letraDigitada; 
+let letraDigitada;
+let letrasDigitadas = [];
 let codigoLetraDigitada;
 let desenhou;
 let fimDoJogo = false; 
@@ -56,7 +56,8 @@ function rodaJogo (){
 	desenhaForca();
 
 	pagina.addEventListener('keydown', function (event){
-	checaLetra(event.key, event.keyCode, palavraForca, xLetrasI, xLetrasF, yLetra);
+		letraDigitada = event.key.toUpperCase();
+		checaLetra(letraDigitada, event.keyCode, palavraForca, xLetrasI, xLetrasF, yLetra, letrasDigitadas);
 	});
 }
 
@@ -154,7 +155,7 @@ function checaLetra (letraDigitada, codigoLetra, palavra, xLetrasI, xLetrasF, yL
 	desenhou = false;
 	if (codigoLetra >= 65 && codigoLetra<= 90) {
 		for (let i = 0; i < palavra.length; i++){
-			if (letraDigitada == palavra[i])
+			if (letraDigitada == palavra[i] && letraDigitada != letrasDigitadas[i])
 			{	
 				xDesenhaLetra = ((xLetrasI[i] + xLetrasF[i])/2)-12;
 				desenhaLetra(letraDigitada, xDesenhaLetra, yLetra);
@@ -167,10 +168,13 @@ function checaLetra (letraDigitada, codigoLetra, palavra, xLetrasI, xLetrasF, yL
 		{
 			desenhou = true;
 			contaErros++;
-			checaDerrota(contaErros);
+			checaDerrota(contaErros, palavra);
 			desenhaBoneco(contaErros);
 			desenhaLetraErrada(letraDigitada);
 		}
+		letrasDigitadas.push(letraDigitada);
+		console.log(letrasDigitadas);
+		console.log(contaAcertos);
 	}
 }
 
@@ -182,9 +186,9 @@ function checaVitoria (contaAcertos, palavraForca) {
 	}
 }
 
-function checaDerrota (contaErros){
+function checaDerrota (contaErros, palavraForca){
 	if (contaErros == 6){
-		exibeMensagemFimDoJogo("voce-perdeu", "mensagem-derrota", "Você Perdeu!");
+		exibeMensagemFimDoJogo("voce-perdeu", "mensagem-derrota", `Você Perdeu! A palavra era: \n${palavraForca}`);
 	}
 }
 

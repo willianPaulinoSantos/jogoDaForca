@@ -1,8 +1,9 @@
 
-const palavras = ["MONDAY", "TUESDAY", "THURSDAY", "FRIDAY", "HEART", "BOTTLE", "FIRE",
-"LOVE", "BODY", "LAWYER", "SHIRT", "PAST", "SERVER", "AIRPLANE", "NEWS",
-"SCRIPT", "WINE", "ROCK", "MUSIC", "PRESENT", "PARENT", "JAVA", "FUTURE", "HUG", "CARD", "YELLOW", "FRIEND", "PENCIL", "CREDIT", "TEACHER", "CLASS", 
-"PAPER", "OBJECT"];
+const palavras = ["PEDRA", "JAZZ", "TONTO", "TELA", "COR", "TELA", "GELO",
+"AMOR", "CORPO", "ADVOGADO", "CAMISETA", "COMPRA", "SERVIDOR", "FUTEBOL", "JORNAL",
+"CORRIDA", "PARALELO", "VENCEDOR", "PERDEDOR", "CORAGEM", "EMPRESA", "JAVA", "CADEIRA", 
+"PERNA", "CAIXA", "CARTEIRA", "AMARELO", "BLUSA", "PARCELA", "CREDITO", "ERVA", "CALULAR", 
+"PAPEL", "CARREIRA"];
 
 
 let tela = document.querySelector('.tela-jogo');
@@ -22,6 +23,7 @@ let contaAcertos;
 let letraDigitada;
 let letrasDigitadas = [];
 let codigoLetraDigitada;
+let codigoValido = false;
 let desenhou;
 let fimDoJogo = false; 
 
@@ -57,7 +59,7 @@ function rodaJogo (){
 
 	pagina.addEventListener('keydown', function (event){
 		letraDigitada = event.key.toUpperCase();
-		checaLetra(letraDigitada, event.keyCode, palavraForca, xLetrasI, xLetrasF, yLetra, letrasDigitadas);
+		checaAcertosErros(letraDigitada, letrasDigitadas, event.keyCode, palavraForca, xLetrasI, xLetrasF, yLetra);
 	});
 }
 
@@ -136,6 +138,59 @@ function desenhaBoneco (contaErros) {
 	}
 }
 
+
+
+
+function checaAcertosErros (letraDigitada, letrasDigitadas, codigoLetra, palavraForca, xLetrasI, xLetrasF, yLetra){
+	let xDesenhaLetra = 0;
+	desenhou = false;
+	codigoValido = checaCodigoLetra(codigoLetra);
+
+	if (codigoValido) {
+		desenhou = checaAcerto(letraDigitada, letrasDigitadas, palavraForca, xLetrasI, xLetrasF, yLetra, xDesenhaLetra);
+		
+		checaErro(palavraForca, letraDigitada, desenhou);
+
+		letrasDigitadas.push(letraDigitada);
+	}
+}
+
+function checaCodigoLetra(codigoLetra){
+	if (codigoLetra >= 65 && codigoLetra <= 90)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+function checaAcerto(letraDigitada, letrasDigitadas, palavraForca, xLetrasI, xLetrasF, yLetra){
+	for (let i = 0; i < palavraForca.length; i++){
+		if (letraDigitada == palavraForca[i] && letraDigitada != letrasDigitadas[i])
+		{	
+			xDesenhaLetra = ((xLetrasI[i] + xLetrasF[i])/2)-12;
+			desenhaLetra(letraDigitada, xDesenhaLetra, yLetra);
+			contaAcertos++;
+			checaVitoria(contaAcertos, palavraForca);
+			desenhou = true;
+			return desenhou;
+		}
+	}
+	return desenhou;
+}
+
+function checaErro(palavraForca, letraDigitada, desenhou){
+	if (desenhou == false && palavraForca.length != 0){
+		desenhou = true;
+		contaErros++;
+		checaDerrota(contaErros, palavraForca);
+		desenhaBoneco(contaErros);
+		desenhaLetraErrada(letraDigitada);
+	}
+}
+
 function desenhaLetra(letraDigitada, xLetra, yLetra) {
 	pincel.font = "40px Arial";
 	pincel.textBaseline = 'alphabetic';
@@ -148,36 +203,6 @@ function desenhaLetraErrada(letraDigitada){
 	pincel.fillText(letraDigitada, xLetraErrada, yLetraErrada);
 	xLetraErrada += 60;
 }
-
-
-function checaLetra (letraDigitada, codigoLetra, palavra, xLetrasI, xLetrasF, yLetra){
-	let xDesenhaLetra = 0;
-	desenhou = false;
-	if (codigoLetra >= 65 && codigoLetra<= 90) {
-		for (let i = 0; i < palavra.length; i++){
-			if (letraDigitada == palavra[i] && letraDigitada != letrasDigitadas[i])
-			{	
-				xDesenhaLetra = ((xLetrasI[i] + xLetrasF[i])/2)-12;
-				desenhaLetra(letraDigitada, xDesenhaLetra, yLetra);
-				contaAcertos++;
-				checaVitoria(contaAcertos, palavra);
-				desenhou = true;
-			}
-		}
-		if (desenhou == false && palavra.length != 0)
-		{
-			desenhou = true;
-			contaErros++;
-			checaDerrota(contaErros, palavra);
-			desenhaBoneco(contaErros);
-			desenhaLetraErrada(letraDigitada);
-		}
-		letrasDigitadas.push(letraDigitada);
-		console.log(letrasDigitadas);
-		console.log(contaAcertos);
-	}
-}
-
 
 function checaVitoria (contaAcertos, palavraForca) {
 	if (contaAcertos == palavraForca.length){

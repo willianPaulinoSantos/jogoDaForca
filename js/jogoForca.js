@@ -52,6 +52,7 @@ function rodaJogo (){
 	pincel.clearRect(0, 0, 1200, 400);
 
 	let palavraForca = iniciaJogo(palavras);
+	console.log(palavraForca);
 	desenhaTracosLetras(palavraForca);
 	desenhaForca();
 
@@ -149,7 +150,9 @@ function checaAcertosErros (letraDigitada, letrasDigitadas, codigoLetra, palavra
 		checaErro(palavraForca, letraDigitada, desenhou);
 
 		letrasDigitadas.push(letraDigitada);
+		console.log(letrasDigitadas);
 	}
+	
 }
 
 function checaCodigoLetra(codigoLetra){
@@ -173,6 +176,9 @@ function checaAcerto(letraDigitada, letrasDigitadas, palavraForca, xLetrasI, xLe
 			checaVitoria(contaAcertos, palavraForca);
 			desenhou = true;
 			return desenhou;
+		}
+		if(letraDigitada == letrasDigitadas[i]){
+			desenhou = false;
 		}
 	}
 	return desenhou;

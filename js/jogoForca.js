@@ -6,6 +6,8 @@ const palavras = ["PEDRA", "JAZZ", "TONTO", "TELA", "COR", "TELA", "GELO",
 "PAPEL", "CARREIRA"];
 
 
+
+
 let tela = document.querySelector('.tela-jogo');
 let pincel = tela.getContext('2d');
 pincel.lineWidth = 5; 

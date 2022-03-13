@@ -1,11 +1,14 @@
 
-let botaoSalvaPalavra = document.querySelector(".salva-palavra");
+let botaoSalvaPalavra = document.querySelector(".botao-salvar");
 botaoSalvaPalavra.addEventListener("click", function (){
-	let palavraUsuario = salvaPalavra();
+	 palavraUsuario = salvaPalavra();
 });
 
 
+
 var erros = []
+
+
 
 
 function salvaPalavra(){
@@ -78,7 +81,7 @@ function procuraCaracteresEspeciais(palavra){
 
 
 	if(checaAscento != null){
-		if(checaAscento.length != 0) {
+		if(checaAscento) {
 			erros.push("Por favor, não insira palavras com acento");
 			return;
 		}

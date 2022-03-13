@@ -52,7 +52,6 @@ function rodaJogo (){
 	pincel.clearRect(0, 0, 1200, 400);
 
 	let palavraForca = iniciaJogo(palavras);
-	console.log(palavraForca);
 	desenhaTracosLetras(palavraForca);
 	desenhaForca();
 
